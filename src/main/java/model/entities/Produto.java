@@ -3,7 +3,7 @@ package model.entities;
 import java.io.Serializable;
 import java.util.*;
 
-public class Produto implements Serializable {
+public class Produto implements Serializable{
 
     private Integer id;
     private String nome;
@@ -100,7 +100,6 @@ public class Produto implements Serializable {
 
         return stringArray;
     }
-
 
     public String getDataForSales(){
         StringBuilder sb = new StringBuilder();

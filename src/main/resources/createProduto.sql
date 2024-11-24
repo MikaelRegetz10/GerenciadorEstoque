@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS Produto (
     quantidade_estoque INT NOT NULL,
     categoria_id INT,
     FOREIGN KEY (categoria_id) REFERENCES Categoria(id),
-    deleted BIT
+    deleted BIT DEFAULT 0
 )
 
 

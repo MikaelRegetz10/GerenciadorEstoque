@@ -24,7 +24,7 @@ BEGIN
         SET categoria_id = LAST_INSERT_ID();
     END IF;
 
-    INSERT INTO Produto (nome, descricao, preco_compra, preco_venda, quantidade_estoque, categoria_id)
-    VALUES (nome_produto, descricao, preco_compra, preco_venda, quantidade_estoque, categoria_id);
+    INSERT INTO Produto (nome, descricao, preco_compra, preco_venda, quantidade_estoque, categoria_id, deleted)
+    VALUES (nome_produto, descricao, preco_compra, preco_venda, quantidade_estoque, categoria_id, 0);
 
 END;

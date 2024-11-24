@@ -9,7 +9,7 @@ BEGIN
     -- Calcula o lucro por unidade vendida
     SELECT preco_compra, preco_venda INTO preco_compra, preco_venda
     FROM Produto
-    WHERE id = NEW.produto_id;
+    WHERE id = NEW.produto_id AND deleted=0;
 
     SET lucro_unitario = preco_venda - preco_compra;
 

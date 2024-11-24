@@ -3,6 +3,7 @@ package view.configuration;
 import model.dao.CategoriaDao;
 import model.dao.DaoFactory;
 import model.dao.ProdutoDao;
+import model.entities.AlertaEstoque;
 import model.entities.Categoria;
 import model.entities.Produto;
 
@@ -43,11 +44,22 @@ public class ConfigurationComponents {
     public static void iniciationTable(JTable tableResultado) {
         ProdutoDao produtoDao = DaoFactory.createProdutoDao();
         List<Produto> list = produtoDao.findAll();
-
         DefaultTableModel tableModel = (DefaultTableModel) tableResultado.getModel();
 
         for (Produto p : list){
             tableModel.addRow(p.getTableFormat());
         }
     }
+
+    public static void createDinamicTable(DefaultTableModel tableModel, List<String> colunas, List<AlertaEstoque> dados){
+        tableModel.setColumnCount(0);
+        tableModel.setRowCount(0);
+
+        for (String s : colunas){
+            tableModel.addColumn(s);
+        }
+    }
+
+
+
 }

@@ -37,10 +37,6 @@ public class ProdutoDaoJDBC implements ProdutoDao {
 
             int rowAffected = st.executeUpdate();
 
-            if (rowAffected < 0){
-                throw new DbException("Erro");
-            }
-
             ResultSet rs = st.getGeneratedKeys();
             if (rs.next()){
                 int id = rs.getInt(1);
@@ -110,6 +106,29 @@ public class ProdutoDaoJDBC implements ProdutoDao {
         }
 
         return rowsAffected;
+    }
+
+    @Override
+    public Integer updateQuantidade(Integer quantidade, String nome) {
+        PreparedStatement st = null;
+        int rowsAffected = 0;
+        try{
+            st = conn.prepareStatement("UPDATE Produto "
+                                            + "SET quantidade_estoque = ? "
+                                            + "WHERE UPPER(nome) = UPPER(?)");
+
+            st.setInt(1, quantidade);
+            st.setString(2, nome);
+
+            rowsAffected = st.executeUpdate();
+
+        }catch (SQLException e){
+            throw new DbException(e.getMessage());
+        }finally {
+            DB.closeStatement(st);
+        }
+        return rowsAffected;
+
     }
 
     @Override

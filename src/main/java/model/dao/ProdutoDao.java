@@ -9,6 +9,7 @@ public interface ProdutoDao {
 
     boolean insert(Produto obj);
     Integer update(String nome, String valorCompra, String valorVenda, String quantidade);
+    Integer updateQuantidade(Integer quantidade, String nome);
     Integer deleteByName(String name);
     Produto findByName(String name);
     Produto findByNameAndCategory(String name, Categoria categoria);

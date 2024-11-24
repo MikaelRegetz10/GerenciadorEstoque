@@ -6,6 +6,7 @@ package view;
 
 import model.dao.DaoFactory;
 import model.dao.ProdutoDao;
+import model.dao.RelatorioDao;
 import model.entities.Produto;
 import view.configuration.ConfigurationComponents;
 import view.configuration.TypeSelectMenu;
@@ -115,11 +116,27 @@ public class SimularVenda extends javax.swing.JFrame implements Navegacao{
         ProdutoDao produtoDao = DaoFactory.createProdutoDao();
         Produto produto = produtoDao.findByName(nome);
 
+        Double lucro = (produto.getPrecoVenda() - produto.getPrecoCompra())*quantidade;
+
         if (quantidade > produto.getQuantidade()){
             JOptionPane.showInternalMessageDialog(null, "Quantidade insuficiente para o produto selecionado. Este produto possui: "+ produto.getQuantidade() + " unidades.");
             return;
         }
 
+        Integer rowsAffected = produtoDao.updateQuantidade(produto.getQuantidade()-quantidade, produto.getNome());
+
+        if (rowsAffected <=0){
+            System.out.println("EROO");
+            return;
+        }
+
+        RelatorioDao relatorioDao = DaoFactory.createRelatorioDao();
+        relatorioDao.insertRelatorioVenda(produto, quantidade, lucro);
+
+        JOptionPane.showInternalMessageDialog(null, "Venda realizada com sucesso!");
+
+        textFieldQuantidade.setText("");
+        ConfigurationComponents.iniciationSelectMenu(selectMenuItens, TypeSelectMenu.PRODUTO);
     }
 
 
