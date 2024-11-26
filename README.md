@@ -19,12 +19,3 @@ Este projeto é um sistema de gerenciamento de estoque desenvolvido em Java e SQ
 - **MySQL**: Banco de dados utilizado para armazenar as informações do sistema.
 
 
-##
-| Integrantes do projeto    |
-|------------------------|
-| Mikael Regetz          |
-| Davi Maia              |
-| Caroline Holanda       |
-| Bruno Temote           |
-
-
